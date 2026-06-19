@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — LUXÉ</title>
+  <meta name="description" content="Manage your LUXÉ orders, settings, and curated wishlist." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo" id="nav-logo">LUX<span>É</span></a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#products">Collections</a></li>
+        <li><a href="index.html#products">Shop</a></li>
+        <li><a href="index.html#promo">Sale</a></li>
+        <li><a href="index.html#testimonials">Reviews</a></li>
+        <li><a href="index.html#footer">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-icon-btn" id="search-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <div class="nav-account-wrapper">
+          <button class="nav-icon-btn" id="account-btn" aria-label="Account">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </button>
+          <div class="nav-dropdown" id="account-dropdown">
+            <a href="dashboard.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>Dashboard</span>
+            </a>
+            <a href="admin.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+              <span>Merchant Admin</span>
+            </a>
+          </div>
+        </div>
+        <button class="nav-icon-btn" id="cart-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge">3</span>
+        </button>
+        <button class="nav-mobile-toggle" id="mobile-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== DASHBOARD CONTAINER ===== -->
+  <main class="dashboard-main container">
+    <!-- Sidebar Navigation -->
+    <aside class="db-sidebar">
+      <div class="user-quick-profile">
+        <div class="user-avatar" id="sidebar-avatar">AM</div>
+        <h3 class="user-name-display" id="sidebar-username">Alex Mercer</h3>
+        <p class="user-role-label">Premium Member</p>
+      </div>
+      <nav class="db-nav">
+        <button class="db-nav-btn active" data-tab="overview">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          Overview
+        </button>
+        <button class="db-nav-btn" data-tab="orders">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Orders
+        </button>
+        <button class="db-nav-btn" data-tab="wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Wishlist
+        </button>
+        <button class="db-nav-btn" data-tab="settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <section class="db-content">
+      <!-- 1. OVERVIEW TAB -->
+      <div class="db-tab-pane active" id="tab-overview">
+        <div class="db-welcome">
+          <span class="section-eyebrow">Welcome Back</span>
+          <h2 class="section-title">Hello, <span class="accent" id="welcome-name">Alex</span></h2>
+          <p class="section-subtitle">Here is a summary of your recent activity and saved items in your LUXÉ account.</p>
+        </div>
+
+        <!-- Metric Grid -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Total Orders</span>
+              <span class="metric-icon">👜</span>
+            </div>
+            <div class="metric-value" id="stat-total-orders">3</div>
+            <div class="metric-subtext">Across past 12 months</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Wishlisted Items</span>
+              <span class="metric-icon">✨</span>
+            </div>
+            <div class="metric-value" id="stat-wishlist-count">2</div>
+            <div class="metric-subtext">Items saved to purchase later</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Loyalty Club Points</span>
+              <span class="metric-icon">👑</span>
+            </div>
+            <div class="metric-value" id="stat-loyalty-points">350</div>
+            <div class="metric-subtext">Level: Gold Connoisseur</div>
+          </div>
+        </div>
+
+        <!-- Tracking Card / Recent Order -->
+        <div class="tracking-order-card" id="tracking-card">
+          <div class="tracking-card-header">
+            <h3>Active Shipment Tracking</h3>
+            <span class="order-id" id="tracking-order-id">LX-9743</span>
+          </div>
+          <div class="tracking-timeline">
+            <div class="timeline-step completed">
+              <div class="step-dot"></div>
+              <div class="step-label">Order Placed</div>
+            </div>
+            <div class="timeline-step completed">
+              <div class="step-dot"></div>
+              <div class="step-label">Processing</div>
+            </div>
+            <div class="timeline-step active">
+              <div class="step-dot"></div>
+              <div class="step-label">In Transit</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-dot"></div>
+              <div class="step-label">Delivered</div>
+            </div>
+          </div>
+          <div class="tracking-info">
+            <p><strong>Status:</strong> In Transit (On schedule)</p>
+            <p><strong>Carrier:</strong> LUXÉ Priority Concierge</p>
+          </div>
+        </div>
+
+        <!-- Recent Orders Snippet -->
+        <div class="recent-orders-section">
+          <div class="section-header-row">
+            <h3>Recent Orders</h3>
+            <button class="text-link-btn" onclick="document.querySelector('[data-tab=orders]').click()">View All Orders</button>
+          </div>
+          <div class="orders-table-wrapper">
+            <table class="db-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Date</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="recent-orders-list">
+                <!-- Javascript hydrated rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. ORDERS TAB -->
+      <div class="db-tab-pane" id="tab-orders">
+        <div class="section-intro">
+          <span class="section-eyebrow">Transaction Records</span>
+          <h2 class="section-title">Order History</h2>
+          <p class="section-subtitle">View receipt logs, order specifics, and real-time tracking metrics for all purchases.</p>
+        </div>
+
+        <div class="orders-history-list" id="orders-full-list">
+          <!-- Dynanically populated list of detailed order expansion cards -->
+        </div>
+      </div>
+
+      <!-- 3. WISHLIST TAB -->
+      <div class="db-tab-pane" id="tab-wishlist">
+        <div class="section-intro">
+          <span class="section-eyebrow">Saved Selections</span>
+          <h2 class="section-title">Your Wishlist</h2>
+          <p class="section-subtitle">Curate your next additions. Toggle list items or quick-add to shopping cart.</p>
+        </div>
+
+        <div class="wishlist-grid" id="wishlist-items-grid">
+          <!-- Dynanically populated grid similar to homepage storefront cards -->
+        </div>
+        <div class="wishlist-empty-state" id="wishlist-empty" style="display:none;">
+          <div class="empty-state-icon">✨</div>
+          <h3>Your wishlist is empty</h3>
+          <p>Explore our premium collections to save items for later.</p>
+          <a href="index.html#products" class="btn btn-primary">Browse Collections</a>
+        </div>
+      </div>
+
+      <!-- 4. SETTINGS TAB -->
+      <div class="db-tab-pane" id="tab-settings">
+        <div class="section-intro">
+          <span class="section-eyebrow">Personal Credentials</span>
+          <h2 class="section-title">Account Settings</h2>
+          <p class="section-subtitle">Manage your personal profile, phone, and primary shipping address details.</p>
+        </div>
+
+        <form class="settings-form" id="profile-settings-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="settings-fullname">Full Name</label>
+              <input type="text" id="settings-fullname" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label for="settings-email">Email Address</label>
+              <input type="email" id="settings-email" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label for="settings-phone">Phone Number</label>
+              <input type="text" id="settings-phone" class="form-input" required />
+            </div>
+            <div class="form-group full-width">
+              <label for="settings-address">Default Shipping Address</label>
+              <textarea id="settings-address" class="form-textarea" rows="3" required></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="save-profile-btn">
+              Save Profile Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer" style="margin-top: 100px;">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p class="footer-copyright">&copy; 2026 LUXÉ. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="index.html">Back to Storefront</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

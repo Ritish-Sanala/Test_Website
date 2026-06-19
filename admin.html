@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merchant Portal — LUXÉ</title>
+  <meta name="description" content="Manage LUXÉ products, orders, and sales performance." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo" id="nav-logo">LUX<span>É</span></a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#products">Collections</a></li>
+        <li><a href="index.html#products">Shop</a></li>
+        <li><a href="index.html#promo">Sale</a></li>
+        <li><a href="index.html#testimonials">Reviews</a></li>
+        <li><a href="index.html#footer">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-icon-btn" id="search-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <div class="nav-account-wrapper">
+          <button class="nav-icon-btn" id="account-btn" aria-label="Account">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </button>
+          <div class="nav-dropdown" id="account-dropdown">
+            <a href="dashboard.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>Dashboard</span>
+            </a>
+            <a href="admin.html" class="dropdown-item">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+              <span>Merchant Admin</span>
+            </a>
+          </div>
+        </div>
+        <button class="nav-icon-btn" id="cart-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge">3</span>
+        </button>
+        <button class="nav-mobile-toggle" id="mobile-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== ADMIN LAYOUT ===== -->
+  <main class="dashboard-main container">
+    <!-- Sidebar -->
+    <aside class="db-sidebar">
+      <div class="user-quick-profile">
+        <div class="user-avatar" style="background:var(--color-surface); border:1px solid var(--color-accent); color:var(--color-accent);">M</div>
+        <h3 class="user-name-display">Merchant Admin</h3>
+        <p class="user-role-label">Store Director</p>
+      </div>
+      <nav class="db-nav">
+        <button class="db-nav-btn active" data-tab="analytics">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Store Analytics
+        </button>
+        <button class="db-nav-btn" data-tab="products">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Catalog Products
+        </button>
+        <button class="db-nav-btn" data-tab="orders">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Customer Orders
+        </button>
+        <button class="db-nav-btn" data-tab="customers">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          User Database
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Content Area -->
+    <section class="db-content">
+      <!-- 1. ANALYTICS TAB -->
+      <div class="db-tab-pane active" id="tab-analytics">
+        <div class="section-intro">
+          <span class="section-eyebrow">Executive Summary</span>
+          <h2 class="section-title">Sales Metrics</h2>
+          <p class="section-subtitle">Real-time reports detailing earnings, volume, conversion, and stock notices.</p>
+        </div>
+
+        <!-- Analytics Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Total Revenue</span>
+              <span class="metric-icon">💰</span>
+            </div>
+            <div class="metric-value" id="admin-stat-sales">$873.00</div>
+            <div class="metric-subtext">+18% growth this week</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Total Orders</span>
+              <span class="metric-icon">👜</span>
+            </div>
+            <div class="metric-value" id="admin-stat-orders">3</div>
+            <div class="metric-subtext">100% processed successfully</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Avg. Ticket Value</span>
+              <span class="metric-icon">📊</span>
+            </div>
+            <div class="metric-value" id="admin-stat-aov">$291.00</div>
+            <div class="metric-subtext">Average spend per customer</div>
+          </div>
+        </div>
+
+        <!-- Custom SVG Chart Card -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Revenue Progression (June 2026)</h3>
+            <span class="chart-legend"><span class="legend-dot"></span>Sales ($)</span>
+          </div>
+          <div class="chart-container">
+            <svg class="sales-chart" viewBox="0 0 800 250" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="chart-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--color-accent)" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="var(--color-accent)" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+              <!-- Grid Lines -->
+              <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+              <line x1="0" y1="125" x2="800" y2="125" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+              <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+              <!-- Chart Line & Area -->
+              <path class="chart-area" d="M 0,220 L 100,190 L 200,200 L 300,140 L 400,160 L 500,80 L 600,120 L 700,40 L 800,50 L 800,250 L 0,250 Z" fill="url(#chart-grad)" />
+              <path class="chart-line" d="M 0,220 L 100,190 L 200,200 L 300,140 L 400,160 L 500,80 L 600,120 L 700,40 L 800,50" fill="none" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="chart-labels">
+            <span>June 1</span>
+            <span>June 5</span>
+            <span>June 10</span>
+            <span>June 15</span>
+            <span>June 20</span>
+          </div>
+        </div>
+
+        <div class="analytics-row">
+          <!-- Category Shares -->
+          <div class="category-shares-card">
+            <h3>Category Breakdown</h3>
+            <div class="category-bars-list" id="category-distribution-list">
+              <!-- JS dynamic bars -->
+            </div>
+          </div>
+          
+          <!-- Stock Warnings -->
+          <div class="stock-alerts-card">
+            <h3>Inventory Audit Warnings</h3>
+            <div class="alerts-list" id="stock-alerts-list">
+              <!-- Hydrated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. PRODUCTS TAB -->
+      <div class="db-tab-pane" id="tab-products">
+        <div class="section-header-row">
+          <div>
+            <span class="section-eyebrow">Catalog Records</span>
+            <h2 class="section-title">Product Inventory</h2>
+          </div>
+          <button class="btn btn-primary" id="add-product-btn-trigger">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Product
+          </button>
+        </div>
+
+        <div class="orders-table-wrapper">
+          <table class="db-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Rating</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-products-list">
+              <!-- Dynamically rendered catalog items -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. ORDERS TAB -->
+      <div class="db-tab-pane" id="tab-orders">
+        <div class="section-intro">
+          <span class="section-eyebrow">Shipment Distribution</span>
+          <h2 class="section-title">Merchant Orders</h2>
+          <p class="section-subtitle">Track payments, shipping queues, and assign customer shipping milestones.</p>
+        </div>
+
+        <div class="orders-table-wrapper">
+          <table class="db-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Update Status</th>
+              </tr>
+            </thead>
+            <tbody id="admin-orders-list">
+              <!-- Dynamic orders database -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. CUSTOMERS TAB -->
+      <div class="db-tab-pane" id="tab-customers">
+        <div class="section-intro">
+          <span class="section-eyebrow">Registered Users</span>
+          <h2 class="section-title">User Accounts</h2>
+          <p class="section-subtitle">Directory of active clients, lifetime transactions, and concierge flags.</p>
+        </div>
+
+        <div class="orders-table-wrapper">
+          <table class="db-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Email Address</th>
+                <th>Phone</th>
+                <th>Total Orders</th>
+                <th>Total Spent</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="admin-customers-list">
+              <!-- Dynamic customers directory -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== MODALS (CRUD) ===== -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title">Add New Product</h3>
+        <button class="modal-close" id="modal-close-btn">&times;</button>
+      </div>
+      <form class="modal-form" id="product-crud-form">
+        <!-- Hidden input for edit mode -->
+        <input type="hidden" id="form-product-id" value="" />
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="form-product-name">Product Name</label>
+            <input type="text" id="form-product-name" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label for="form-product-category">Category</label>
+            <select id="form-product-category" class="form-input" style="background:#17171c; color:#f0ece4; border:1px solid var(--color-border);" required>
+              <option value="Timepieces">Timepieces</option>
+              <option value="Leather Goods">Leather Goods</option>
+              <option value="Eyewear">Eyewear</option>
+              <option value="Fragrances">Fragrances</option>
+              <option value="Footwear">Footwear</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-product-price">Price ($)</label>
+            <input type="number" id="form-product-price" step="0.01" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label for="form-product-original-price">Original Price ($, Optional)</label>
+            <input type="number" id="form-product-original-price" step="0.01" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label for="form-product-stock">Stock Level</label>
+            <input type="number" id="form-product-stock" class="form-input" min="0" required />
+          </div>
+          <div class="form-group">
+            <label for="form-product-image">Product Image File</label>
+            <select id="form-product-image" class="form-input" style="background:#17171c; color:#f0ece4; border:1px solid var(--color-border);" required>
+              <option value="images/product-watch.png">Watch (images/product-watch.png)</option>
+              <option value="images/product-bag.png">Leather Bag (images/product-bag.png)</option>
+              <option value="images/product-sunglasses.png">Sunglasses (images/product-sunglasses.png)</option>
+              <option value="images/product-perfume.png">Perfume (images/product-perfume.png)</option>
+              <option value="images/product-sneakers.png">Sneakers (images/product-sneakers.png)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-product-badge">Badge (e.g. New, -30%)</label>
+            <input type="text" id="form-product-badge" class="form-input" placeholder="Optional" />
+          </div>
+          <div class="form-group">
+            <label for="form-product-filter-cats">Filter Classes (space separated)</label>
+            <input type="text" id="form-product-filter-cats" class="form-input" placeholder="e.g. new best sale" required />
+          </div>
+        </div>
+        <div class="form-actions" style="margin-top: 24px;">
+          <button type="submit" class="btn btn-primary" id="modal-submit-btn">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN ACCESS LOCK SCREEN ===== -->
+  <div class="admin-lock-screen" id="admin-lock-screen">
+    <div class="lock-card">
+      <div class="lock-icon">🔒</div>
+      <h2>Merchant Access</h2>
+      <p class="lock-sub">Enter credentials to unlock the management portal.</p>
+      
+      <form id="admin-lock-form" class="lock-form">
+        <div class="form-group" style="display:flex; flex-direction:column; gap:8px;">
+          <label for="lock-username">Username</label>
+          <input type="text" id="lock-username" class="form-input" placeholder="e.g. admin" required />
+        </div>
+        <div class="form-group" style="display:flex; flex-direction:column; gap:8px; margin-top: 12px;">
+          <label for="lock-password">Password</label>
+          <input type="password" id="lock-password" class="form-input" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:24px;">Unlock Portal</button>
+      </form>
+      
+      <p class="lock-hint">Hint: use <strong>admin</strong> / <strong>admin</strong></p>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer" style="margin-top: 100px;">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p class="footer-copyright">&copy; 2026 LUXÉ. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="index.html">Back to Storefront</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
