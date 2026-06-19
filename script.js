@@ -143,8 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!localStorage.getItem('luxe_orders')) {
     localStorage.setItem('luxe_orders', JSON.stringify(defaultOrders));
   }
-  const existingProfile = localStorage.getItem('luxe_profile');
-  if (!existingProfile || existingProfile.includes("Ritish")) {
+  const existingProfileRaw = localStorage.getItem('luxe_profile');
+  let existingProfileObj = null;
+  try { existingProfileObj = existingProfileRaw ? JSON.parse(existingProfileRaw) : null; } catch (_) {}
+  if (!existingProfileObj || !existingProfileObj.name || !existingProfileObj.email) {
     localStorage.setItem('luxe_profile', JSON.stringify(defaultProfile));
   }
   if (!localStorage.getItem('luxe_wishlist')) {
