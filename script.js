@@ -497,12 +497,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toast = document.createElement('div');
     toast.className = 'toast-notification';
-    toast.innerHTML = `
-      <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
-        <polyline points="20 6 9 17 4 12"/>
-      </svg>
-      <span>${message}</span>
-    `;
+toast.innerHTML = `
+  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+    <polyline points="20 6 9 17 4 12"/>
+  </svg>
+  <span></span>
+`;
+
+toast.querySelector('span').textContent = message;
 
     // Style the toast
     Object.assign(toast.style, {
